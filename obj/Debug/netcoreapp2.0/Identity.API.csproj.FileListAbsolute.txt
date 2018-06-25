@@ -1,0 +1,12 @@
+D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\netcoreapp2.0\Identity.API.deps.json
+D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\netcoreapp2.0\Identity.API.runtimeconfig.json
+D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\netcoreapp2.0\Identity.API.runtimeconfig.dev.json
+D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\netcoreapp2.0\Identity.API.dll
+D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\netcoreapp2.0\Identity.API.pdb
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.csprojResolveAssemblyReference.cache
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.csproj.CoreCompileInputs.cache
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.AssemblyInfoInputs.cache
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.AssemblyInfo.cs
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.dll
+D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\netcoreapp2.0\Identity.API.pdb
