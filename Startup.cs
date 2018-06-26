@@ -47,7 +47,13 @@ namespace LibraryBuddy
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+
+
             services.AddMvc();
+
+            //Add Data Protection
+            //https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-2.1
+            //https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-2.1&tabs=aspnetcore2x
 
             services.Configure<IISOptions>(iis =>
             {
