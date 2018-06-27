@@ -1,7 +1,7 @@
 services:
   identity.api:
     build:
-      context: D:\projects\LibraryBuddy\LibraryBuddy
+      context: D:\Learning\projects\LibraryBuddy
       dockerfile: src/Services/Identity/Identity.API/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
