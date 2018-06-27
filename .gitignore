@@ -261,3 +261,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/src/Services/Identity/Identity.API/appsettings1.json

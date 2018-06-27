@@ -82,6 +82,8 @@ namespace Identity.API
                 //.AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<ApplicationUser>();
 
+
+
             if (Environment.IsDevelopment())
             {
                 builder.AddDeveloperSigningCredential();
