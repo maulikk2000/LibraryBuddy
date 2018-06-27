@@ -3,9 +3,9 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>83c96fc4-f70d-4104-9e54-370ade4e7127</ProjectGuid>
+    <ProjectGuid>9da4e60f-d8fe-4fe9-9bb9-b61b2882dd9d</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>http://localhost:{ServicePort}/</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/</DockerServiceUrl>
     <DockerServiceName>identity.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

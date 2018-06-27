@@ -1,7 +1,0 @@
-D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
-D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\Identity.API.dll
-D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\Identity.API.pdb
-D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\docker-compose.dcprojAssemblyReference.cache
-D:\projects\LibraryBuddy\LibraryBuddy\obj\Debug\docker-compose.dcproj.CopyComplete
-D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\Identity.API.Views.dll
-D:\projects\LibraryBuddy\LibraryBuddy\bin\Debug\Identity.API.Views.pdb
