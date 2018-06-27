@@ -3,22 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27705.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7616940D-BE98-435B-8F16-7CDC4BA318FB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9BB1FD71-9E31-46AD-81E6-F656D6DB080A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{59AE563F-7F29-48DD-B8C0-21C2046D2F44}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{949000B5-93D7-4B5E-AB3B-1DBF2A0E9B5A}"
-EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{9BB1FD71-9E31-46AD-81E6-F656D6DB080A} = {7616940D-BE98-435B-8F16-7CDC4BA318FB}
-		{59AE563F-7F29-48DD-B8C0-21C2046D2F44} = {9BB1FD71-9E31-46AD-81E6-F656D6DB080A}
-		{949000B5-93D7-4B5E-AB3B-1DBF2A0E9B5A} = {9BB1FD71-9E31-46AD-81E6-F656D6DB080A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E9C113C-4A64-45CA-9A17-6A05BD0F9D1D}
