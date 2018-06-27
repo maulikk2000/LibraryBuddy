@@ -81,10 +81,7 @@ namespace Identity.API
                 //.AddInMemoryApiResources(Config.GetApis())
                 //.AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<ApplicationUser>();
-
-            //this line added just to check dksdklfsd
-
-
+                        
             if (Environment.IsDevelopment())
             {
                 builder.AddDeveloperSigningCredential();
