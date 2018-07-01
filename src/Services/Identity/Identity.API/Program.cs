@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
@@ -33,6 +34,25 @@ namespace Identity.API
         public static IWebHost BuildWebHost(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                //here add AzureKeyVault configuration
+                    .ConfigureAppConfiguration((context, config) => 
+                    {
+                        config.AddJsonFile("azurekeyvault.json", optional: false, reloadOnChange: true);
+                        var builtConfig = config.Build();
+
+                        var keyValutConfigBuilder = new ConfigurationBuilder();
+                          
+                        //we read the values from azurekeyvault.json file which is not checked in
+
+                        keyValutConfigBuilder.AddAzureKeyVault(
+                            $"https://{builtConfig["azureKeyVault:vault"]}.vault.azure.net/",
+                                builtConfig["azureKeyVault:clientId"],
+                                builtConfig["azureKeyVault:clientSecret"]
+                            );
+                        var keyValutConfig = keyValutConfigBuilder.Build();
+                        config.AddConfiguration(keyValutConfig);
+                    })   
+                    .UseHealthChecks("/identityhc")
                     .UseStartup<Startup>()
                     .UseSerilog((context, configuration) =>
                     {

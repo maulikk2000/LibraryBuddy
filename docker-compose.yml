@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: src/Services/Identity/Identity.API/Dockerfile
+
+  webstatus:
+    image: ${DOCKER_REGISTRY}webstatus
+    build:
+      context: .
+      dockerfile: src/WebApps/WebStatus/Dockerfile
+

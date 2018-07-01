@@ -262,3 +262,4 @@ paket-files/
 __pycache__/
 *.pyc
 /src/Services/Identity/Identity.API/appsettings1.json
+/src/Services/Identity/Identity.API/azurekeyvault.json

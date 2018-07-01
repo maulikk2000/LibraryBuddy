@@ -14,7 +14,8 @@ namespace Identity.API
             return new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResources.Profile()
             };
         }
 
@@ -56,7 +57,7 @@ namespace Identity.API
                     PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = { "openid", "profile", "api1" } //what this client is allowed to see of a user
                 },
 
                 // SPA client using implicit flow

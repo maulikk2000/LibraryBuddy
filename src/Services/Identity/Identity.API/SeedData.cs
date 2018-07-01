@@ -24,12 +24,17 @@ namespace Identity.API
                 context.Database.Migrate();
 
                 var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                var alice = userMgr.FindByNameAsync("alice").Result;
+
+
+                //to register real users implement IProfileService.
+                //http://docs.identityserver.io/en/release/reference/profileservice.html?highlight=IProfileService
+
+                var alice = userMgr.FindByNameAsync("james").Result;
                 if (alice == null)
                 {
                     alice = new ApplicationUser
                     {
-                        UserName = "alice"
+                        UserName = "james"
                     };
                     var result = userMgr.CreateAsync(alice, "Pass123$").Result;
                     if (!result.Succeeded)
@@ -38,10 +43,10 @@ namespace Identity.API
                     }
 
                     result = userMgr.AddClaimsAsync(alice, new Claim[]{
-                        new Claim(JwtClaimTypes.Name, "Alice Smith"),
-                        new Claim(JwtClaimTypes.GivenName, "Alice"),
+                        new Claim(JwtClaimTypes.Name, "James Smith"),
+                        new Claim(JwtClaimTypes.GivenName, "James"),
                         new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                        new Claim(JwtClaimTypes.Email, "AliceSmith@email.com"),
+                        new Claim(JwtClaimTypes.Email, "JamesSmith@email.com"),
                         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                         new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
                         new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json)
