@@ -128,7 +128,7 @@ namespace Identity.API
                 //frequently, you can cache the returns and configure a cache duration for each health check.
 
                 var minutes = 5;
-                if(int.TryParse(Configuration["HealthCheck:Timeout"], out var parsedMinutes))
+                if (int.TryParse(Configuration["HealthCheck:Timeout"], out var parsedMinutes))
                 {
                     minutes = parsedMinutes;
                 }
