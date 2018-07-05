@@ -216,3 +216,14 @@ Object name: 'HttpResponseStream'.
 2018-07-02 01:07:24.791 +10:00 [DBG] Using Identity.External as default scheme for sign-out
 2018-07-02 01:07:24.791 +10:00 [DBG] Using Identity.Application as default scheme for challenge
 2018-07-02 01:07:24.792 +10:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-07-03 12:28:55.240 +10:00 [WRN] No XML encryptor configured. Key "b10db427-47a1-430e-9c2f-9acc59aa6e80" may be persisted to storage in unencrypted form.
+2018-07-03 12:28:56.086 +10:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-07-03 12:28:56.086 +10:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-07-03 12:28:56.086 +10:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-07-03 12:28:56.086 +10:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-07-03 12:28:56.086 +10:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-07-03 12:33:00.528 +10:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.Application as default scheme for forbid

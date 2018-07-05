@@ -4,34 +4,32 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.HealthChecks;
 using WebStatus.Models;
 
 namespace WebStatus.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IHealthCheckService _healthCheckService;
+
+        public HomeController(IHealthCheckService healthCheckService)
         {
-            return View();
+            _healthCheckService = healthCheckService;
         }
-
-        public IActionResult About()
+        public async Task<IActionResult> Index()
         {
-            ViewData["Message"] = "Your application description page.";
+            var healthCheckResult = await _healthCheckService.CheckHealthAsync();
 
-            return View();
-        }
+            var checkStatusdata = new HealthStatusViewModel(healthCheckResult.CheckStatus);
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            foreach (var result in healthCheckResult.Results)
+            {
+                checkStatusdata.AddResult(result.Key, result.Value);
+            }
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            ViewBag.RefreshSeconds = 60;
+            return View(checkStatusdata);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

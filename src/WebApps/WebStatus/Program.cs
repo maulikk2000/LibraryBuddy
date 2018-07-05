@@ -20,5 +20,8 @@ namespace WebStatus
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+
+        //web host fundamentals
+        //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host?view=aspnetcore-2.1&tabs=aspnetcore2x
     }
 }
