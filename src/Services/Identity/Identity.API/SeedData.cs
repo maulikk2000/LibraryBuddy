@@ -6,11 +6,11 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
-using Identity.API.Data;
-using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using LibraryBuddy.Services.Identity.API.Data;
+using LibraryBuddy.Services.Identity.API.Models;
 
 namespace Identity.API
 {
@@ -49,7 +49,8 @@ namespace Identity.API
                         new Claim(JwtClaimTypes.Email, "JamesSmith@email.com"),
                         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                         new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
-                        new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json)
+                        new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json),
+                        new Claim(JwtClaimTypes.Role,"SuperAdmin")
                     }).Result;
                     if (!result.Succeeded)
                     {

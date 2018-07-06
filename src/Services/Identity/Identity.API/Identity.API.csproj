@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureKeyVault" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Redis" Version="0.4.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="2.1.1" />
+    <PackageReference Include="Scrypt.NETCore" Version="1.0.3" />
     <PackageReference Include="Serilog" Version="2.7.2-dev-01005" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.2-dev-00024" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00777" />
@@ -36,6 +37,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\HealthChecks\Microsoft.Extensions.HealthChecks.AzureStorage\Microsoft.Extensions.HealthChecks.AzureStorage.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\HealthChecks\Microsoft.Extensions.HealthChecks.SqlServer\Microsoft.Extensions.HealthChecks.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\HealthChecks\Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\WebHost\WebHost.Customization\WebHost.Customization.csproj" />
   </ItemGroup>
 
 </Project>

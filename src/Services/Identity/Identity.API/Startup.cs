@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using Identity.API.Data;
-using Identity.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -12,10 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.DataProtection;
 using System;
-using System.Data.SqlClient;
 using System.Reflection;
 using StackExchange.Redis;
 using Microsoft.Extensions.HealthChecks;
+using IdentityServer4.Services;
+using LibraryBuddy.Services.Identity.API.Models;
+using LibraryBuddy.Services.Identity.API.Services;
+using LibraryBuddy.Services.Identity.API.Data;
+using LibraryBuddy.Services.Identity.API.Helper;
 
 namespace Identity.API
 {
@@ -77,6 +79,7 @@ namespace Identity.API
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
             })
+            //Configuration Store support for Clients, Resources, and CORS settings
             .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = sql => sql.UseSqlServer(connString,
@@ -86,19 +89,27 @@ namespace Identity.API
                                     sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                                 });
                 })
-                .AddOperationalStore(options =>
-                {
-                    options.ConfigureDbContext = operation => operation.UseSqlServer(connString,
-                        sqlServerOptionsAction: sqlOptions =>
-                        {
-                            sqlOptions.MigrationsAssembly(migrationAssembly);
-                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-                        });
-                })
-                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddInMemoryApiResources(Config.GetApis())
-                //.AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<ApplicationUser>();
+            //Operational Store supports authorization grants, consents, and tokens (refresh and reference)
+            .AddOperationalStore(options =>
+            {
+                options.ConfigureDbContext = operation => operation.UseSqlServer(connString,
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(migrationAssembly);
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    });
+
+                //TODO: LETS ADD THE BELOW FOR NOW AND RE-VISIT IT IF ANY ISSUES
+                options.EnableTokenCleanup = true; //Indicates whether stale entries will be automatically cleaned up from the database. Default token clean up interval is 3600 seconds (1 hour)
+
+            })
+            //.AddInMemoryIdentityResources(Config.GetIdentityResources())
+            //.AddInMemoryApiResources(Config.GetApis())
+            //.AddInMemoryClients(Config.GetClients())
+            .AddAspNetIdentity<ApplicationUser>();
+
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IPasswordHasher<ApplicationUser>, SCryptPasswordHasher<ApplicationUser>>();
 
             //Use data protection to share the cookies. To provide SSO experience apps must share the cookie.
             //https://docs.microsoft.com/en-au/aspnet/core/security/cookie-sharing?view=aspnetcore-2.1&tabs=aspnetcore2x#sharing-authentication-cookies-between-applications
