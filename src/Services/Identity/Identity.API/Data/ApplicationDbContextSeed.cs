@@ -2,6 +2,7 @@
 using LibraryBuddy.Services.Identity.API.Helper;
 using LibraryBuddy.Services.Identity.API.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -54,9 +55,9 @@ namespace LibraryBuddy.Services.Identity.API.Data
                 //D 32 digits separated by hyphens: 00000000-0000-0000-0000-000000000000
                 SecurityStamp = Guid.NewGuid().ToString("D")
             };
-            SCryptPasswordHasher<ApplicationUser> hasher = new SCryptPasswordHasher<ApplicationUser>();
-
-            user.PasswordHash = hasher.HashPassword(user, "Password1@3$");
+            //SCryptPasswordHasher<ApplicationUser> hasher = new SCryptPasswordHasher<ApplicationUser>();
+            IPasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
+            user.PasswordHash = passwordHasher.HashPassword(user, "Password1@3$");
             return new List<ApplicationUser>
             {
                 user

@@ -19,6 +19,8 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using LibraryBuddy.Services.Identity.API.Models;
+using Microsoft.AspNetCore.Authorization;
+using LibraryBuddy.Services.Identity.API.Account;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -254,6 +256,66 @@ namespace IdentityServer4.Quickstart.UI
             }
 
             return View("LoggedOut", vm);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.User.UserName,
+                    FirstName = model.User.FirstName,
+                    LastName = model.User.LastName,
+                    Email = model.Email,
+                    DOB = model.User.DOB,
+                    StreetAdress = new Address
+                    {
+                        Street = model.User.StreetAdress.Street,
+                        City = model.User.StreetAdress.City,
+                        State = model.User.StreetAdress.State,
+                        ZipCode = model.User.StreetAdress.ZipCode,
+                        Country = model.User.StreetAdress.Country
+                    },
+                    LibraryCardId = model.User.LibraryCardId,
+                    PhoneNumber = model.User.PhoneNumber
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if(result.Errors.Count() > 0)
+                {
+                    AddErrors(result);
+                    return View(model);
+                }
+            }
+
+            if(returnUrl != null)
+            {
+                if (HttpContext.User.Identity.IsAuthenticated)
+                    return Redirect(returnUrl);
+                else
+                {
+                    if (ModelState.IsValid)
+                        return RedirectToAction("login", "account", new { returnUrl = returnUrl });
+                    else
+                        return View(model);
+                } 
+
+            }
+
+            return RedirectToAction("index", "home");
         }
 
         /*****************************************/
@@ -536,6 +598,14 @@ namespace IdentityServer4.Quickstart.UI
 
         private void ProcessLoginCallbackForSaml2p(AuthenticateResult externalResult, List<Claim> localClaims, AuthenticationProperties localSignInProps)
         {
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
         }
     }
 }

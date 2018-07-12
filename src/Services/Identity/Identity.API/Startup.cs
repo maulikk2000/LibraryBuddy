@@ -110,6 +110,12 @@ namespace Identity.API
 
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<IPasswordHasher<ApplicationUser>, SCryptPasswordHasher<ApplicationUser>>();
+            services.Configure<ScryptPasswordHasherOptions>(options =>
+            {
+                options.IterationCount = 16384;
+                options.BlockSize = 8;
+                options.ThreadCount = 1;
+            });
 
             //Use data protection to share the cookies. To provide SSO experience apps must share the cookie.
             //https://docs.microsoft.com/en-au/aspnet/core/security/cookie-sharing?view=aspnetcore-2.1&tabs=aspnetcore2x#sharing-authentication-cookies-between-applications
