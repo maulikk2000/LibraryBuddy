@@ -16,7 +16,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 
-namespace Identity.API
+namespace LibraryBuddy.Services.Identity.API
 {
     public class Program
     {

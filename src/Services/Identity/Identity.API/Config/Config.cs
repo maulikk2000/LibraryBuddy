@@ -135,7 +135,7 @@ namespace LibraryBuddy.Services.Identity.API.Configuration
                         LibraryBuddyConstants.StandardScopes.Location,
                         LibraryBuddyConstants.StandardScopes.WebBorrowAgg
                     }
-                }
+                },
                 //location swagger UI
                 new Client
                 {
