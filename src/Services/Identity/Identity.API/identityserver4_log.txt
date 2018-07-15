@@ -227,3 +227,137 @@ Object name: 'HttpResponseStream'.
 2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.External as default scheme for sign-out
 2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.Application as default scheme for challenge
 2018-07-03 12:33:00.568 +10:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-07-15 23:01:40.027 +10:00 [INF] Migrating database associated with the context PersistedGrantDbContext
+2018-07-15 23:01:56.346 +10:00 [INF] An error occurred while migrating database on context PersistedGrantDbContext
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.<>c__DisplayClass0_1`1.<MigrateDbContext>b__0() in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 35
+   at Polly.Policy.<>c__DisplayClass144_0.<Execute>b__0(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 20
+   at Polly.RetrySyntax.<>c__DisplayClass20_1.<WaitAndRetry>b__1(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 451
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, IEnumerable`1 shouldRetryExceptionPredicates, IEnumerable`1 shouldRetryResultPredicates, Func`1 policyStateFactory) in C:\projects\polly\src\Polly.Shared\Retry\RetryEngine.cs:line 31
+   at Polly.RetrySyntax.<>c__DisplayClass20_0.<WaitAndRetry>b__0(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 450
+   at Polly.Policy.ExecuteInternal(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.cs:line 43
+   at Polly.Policy.Execute(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 83
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.MigrateDbContext[TContext](IWebHost webHost, Action`2 seed) in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 33
+2018-07-15 23:01:58.181 +10:00 [INF] Migrating database associated with the context ApplicationDbContext
+2018-07-15 23:02:48.549 +10:00 [INF] Migrating database associated with the context PersistedGrantDbContext
+2018-07-15 23:02:48.584 +10:00 [INF] An error occurred while migrating database on context PersistedGrantDbContext
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.<>c__DisplayClass0_1`1.<MigrateDbContext>b__0() in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 35
+   at Polly.Policy.<>c__DisplayClass144_0.<Execute>b__0(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 20
+   at Polly.RetrySyntax.<>c__DisplayClass20_1.<WaitAndRetry>b__1(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 451
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, IEnumerable`1 shouldRetryExceptionPredicates, IEnumerable`1 shouldRetryResultPredicates, Func`1 policyStateFactory) in C:\projects\polly\src\Polly.Shared\Retry\RetryEngine.cs:line 31
+   at Polly.RetrySyntax.<>c__DisplayClass20_0.<WaitAndRetry>b__0(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 450
+   at Polly.Policy.ExecuteInternal(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.cs:line 43
+   at Polly.Policy.Execute(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 83
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.MigrateDbContext[TContext](IWebHost webHost, Action`2 seed) in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 33
+2018-07-15 23:02:48.839 +10:00 [INF] Migrating database associated with the context ApplicationDbContext
+2018-07-15 23:02:49.856 +10:00 [INF] An error occurred while migrating database on context ApplicationDbContext
+System.InvalidOperationException: Navigation property 'StreetAdress' on entity type 'ApplicationUser' is not virtual. UseLazyLoadingProxies requires all entity types to be public, unsealed, have virtual navigation properties, and have a public or protected constructor.
+   at Microsoft.EntityFrameworkCore.Proxies.Internal.ProxyBindingRewriter.Apply(InternalModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.ImmediateConventionScope.OnModelBuilt(InternalModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, IConventionSetBuilder conventionSetBuilder, IModelValidator validator)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel()
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScoped(ScopedCallSite scopedCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScoped(ScopedCallSite scopedCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.GetRelationalService[TService](IInfrastructure`1 databaseFacade)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.<>c__DisplayClass0_1`1.<MigrateDbContext>b__0() in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 35
+   at Polly.Policy.<>c__DisplayClass144_0.<Execute>b__0(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 20
+   at Polly.RetrySyntax.<>c__DisplayClass20_1.<WaitAndRetry>b__1(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 451
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, IEnumerable`1 shouldRetryExceptionPredicates, IEnumerable`1 shouldRetryResultPredicates, Func`1 policyStateFactory) in C:\projects\polly\src\Polly.Shared\Retry\RetryEngine.cs:line 31
+   at Polly.RetrySyntax.<>c__DisplayClass20_0.<WaitAndRetry>b__0(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 450
+   at Polly.Policy.ExecuteInternal(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.cs:line 43
+   at Polly.Policy.Execute(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 83
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.MigrateDbContext[TContext](IWebHost webHost, Action`2 seed) in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 33
+2018-07-15 23:02:49.886 +10:00 [INF] Migrating database associated with the context ConfigurationDbContext
+2018-07-15 23:02:49.887 +10:00 [INF] An error occurred while migrating database on context ConfigurationDbContext
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.<>c__DisplayClass0_1`1.<MigrateDbContext>b__0() in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 35
+   at Polly.Policy.<>c__DisplayClass144_0.<Execute>b__0(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 20
+   at Polly.RetrySyntax.<>c__DisplayClass20_1.<WaitAndRetry>b__1(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 451
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, IEnumerable`1 shouldRetryExceptionPredicates, IEnumerable`1 shouldRetryResultPredicates, Func`1 policyStateFactory) in C:\projects\polly\src\Polly.Shared\Retry\RetryEngine.cs:line 31
+   at Polly.RetrySyntax.<>c__DisplayClass20_0.<WaitAndRetry>b__0(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 450
+   at Polly.Policy.ExecuteInternal(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.cs:line 43
+   at Polly.Policy.Execute(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 83
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.MigrateDbContext[TContext](IWebHost webHost, Action`2 seed) in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 33
+2018-07-15 23:02:49.963 +10:00 [FTL] Application startup exception
+System.NotImplementedException: The method or operation is not implemented.
+   at LibraryBuddy.Services.Identity.API.Infrastructure.CommonStartup.ConfigureServices(IServiceCollection services, IConfiguration configuration) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Infrastructure\CommonStartup.cs:line 20
+   at LibraryBuddy.Services.Identity.API.Infrastructure.Extensions.ServiceCollectionExtensions.ConfigureServices(IServiceCollection services, IConfiguration configuration) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Infrastructure\Extensions\ServiceCollectionExtensions.cs:line 46
+   at LibraryBuddy.Services.Identity.API.Infrastructure.Extensions.ServiceCollectionExtensions.ConfigureApplicationServices(IServiceCollection services, IConfiguration configuration) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Infrastructure\Extensions\ServiceCollectionExtensions.cs:line 31
+   at LibraryBuddy.Services.Identity.API.Startup.ConfigureServices(IServiceCollection services) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Startup.cs:line 39
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.ConfigureServices(IServiceCollection services)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.EnsureApplicationServices()
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.Initialize()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2018-07-15 23:56:04.005 +10:00 [INF] Migrating database associated with the context PersistedGrantDbContext
+2018-07-15 23:56:37.315 +10:00 [INF] Migrating database associated with the context ApplicationDbContext
+2018-07-15 23:57:30.797 +10:00 [INF] Migrating database associated with the context ConfigurationDbContext
+2018-07-15 23:58:36.343 +10:00 [INF] An error occurred while migrating database on context ConfigurationDbContext
+System.AggregateException: One or more errors occurred. (Value cannot be null.
+Parameter name: key) ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: key
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.TryGetEntry(Object entity, Boolean throwOnNonUniqueness)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.InitialFixup(InternalEntityEntry entry, ISet`1 handledForeignKeys, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.FireStateChanged(EntityState oldState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode node, Boolean force)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode node, TState state, Func`3 handleNode)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at LibraryBuddy.Services.Identity.API.Data.ConfigurationDbContextSeed.SeedAsync(ConfigurationDbContext context, IConfiguration configuration) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Data\ConfigurationDbContextSeed.cs:line 37
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at LibraryBuddy.Services.Identity.API.Program.<>c.<Main>b__0_2(ConfigurationDbContext context, IServiceProvider services) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Program.cs:line 56
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.<>c__DisplayClass0_1`1.<MigrateDbContext>b__0() in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 37
+   at Polly.Policy.<>c__DisplayClass144_0.<Execute>b__0(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 20
+   at Polly.RetrySyntax.<>c__DisplayClass20_1.<WaitAndRetry>b__1(Context ctx, CancellationToken ct) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 451
+   at Polly.Retry.RetryEngine.Implementation[TResult](Func`3 action, Context context, CancellationToken cancellationToken, IEnumerable`1 shouldRetryExceptionPredicates, IEnumerable`1 shouldRetryResultPredicates, Func`1 policyStateFactory) in C:\projects\polly\src\Polly.Shared\Retry\RetryEngine.cs:line 31
+   at Polly.RetrySyntax.<>c__DisplayClass20_0.<WaitAndRetry>b__0(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Retry\RetrySyntax.cs:line 450
+   at Polly.Policy.ExecuteInternal(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.cs:line 43
+   at Polly.Policy.Execute(Action`2 action, Context context, CancellationToken cancellationToken) in C:\projects\polly\src\Polly.Shared\Policy.ExecuteOverloads.cs:line 83
+   at Microsoft.AspNetCore.Hosting.IWebHostExtension.MigrateDbContext[TContext](IWebHost webHost, Action`2 seed) in D:\projects\LibraryBuddy\LibraryBuddy\src\BuildingBlocks\WebHost\WebHost.Customization\WebHostExtension.cs:line 33
+---> (Inner Exception #0) System.ArgumentNullException: Value cannot be null.
+Parameter name: key
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.TryGetEntry(Object entity, Boolean throwOnNonUniqueness)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.InitialFixup(InternalEntityEntry entry, ISet`1 handledForeignKeys, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.FireStateChanged(EntityState oldState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode node, Boolean force)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode node, TState state, Func`3 handleNode)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at LibraryBuddy.Services.Identity.API.Data.ConfigurationDbContextSeed.SeedAsync(ConfigurationDbContext context, IConfiguration configuration) in D:\projects\LibraryBuddy\LibraryBuddy\src\Services\Identity\Identity.API\Data\ConfigurationDbContextSeed.cs:line 37<---
+
+2018-07-15 23:58:36.644 +10:00 [WRN] No XML encryptor configured. Key "cd83e753-7051-4c86-9ef1-329409cf4eda" may be persisted to storage in unencrypted form.
+2018-07-15 23:58:52.329 +10:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-07-15 23:58:52.330 +10:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-07-15 23:58:52.330 +10:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-07-15 23:58:52.330 +10:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-07-15 23:58:52.331 +10:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-07-15 23:58:52.808 +10:00 [DBG] Starting token cleanup
+2018-07-16 00:07:07.014 +10:00 [INF] Migrating database associated with the context PersistedGrantDbContext
+2018-07-16 00:07:11.710 +10:00 [INF] Migrating database associated with the context ApplicationDbContext
+2018-07-16 00:07:16.105 +10:00 [INF] Migrating database associated with the context ConfigurationDbContext
+2018-07-16 00:07:22.257 +10:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-07-16 00:07:22.262 +10:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-07-16 00:07:22.263 +10:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-07-16 00:07:22.264 +10:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-07-16 00:07:22.264 +10:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-07-16 00:07:22.663 +10:00 [DBG] Starting token cleanup

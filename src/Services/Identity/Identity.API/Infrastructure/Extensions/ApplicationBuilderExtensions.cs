@@ -97,6 +97,7 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
 
         public static void UseLibAuthenticaton(this IApplicationBuilder application)
         {
+            application.UseCors("IdentityCorsPolicy");
             application.UseIdentityServer();
         }
 

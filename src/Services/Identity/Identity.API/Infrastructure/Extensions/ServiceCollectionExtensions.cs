@@ -2,6 +2,7 @@
 using IdentityServer4.Services;
 using LibraryBuddy.Services.Identity.API.Data;
 using LibraryBuddy.Services.Identity.API.Helper;
+using LibraryBuddy.Services.Identity.API.Infrastructure.Filters;
 using LibraryBuddy.Services.Identity.API.Models;
 using LibraryBuddy.Services.Identity.API.Services;
 using Microsoft.AspNetCore.DataProtection;
@@ -91,8 +92,8 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseLazyLoadingProxies()
-                .UseSqlServer(connString,
+               // options.UseLazyLoadingProxies() //here we dont need lazy loading.
+                options.UseSqlServer(connString,
                     sqlServerOptionsAction: sqlOptions =>
                     {
                         sqlOptions.MigrationsAssembly(migrationAssembly);
@@ -183,6 +184,15 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
                 throw new Exception("need to configure key material");
             }
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("IdentityCorsPolicy",
+                    policy =>
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
         }
 
         public static void AddLibDataProtection(this IServiceCollection services)
@@ -235,7 +245,13 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
 
         public static IMvcBuilder AddLibMvc(this IServiceCollection services)
         {
-            var mvcBuilder = services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var mvcBuilder = services
+                .AddMvc(options =>
+                {
+                    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                    options.Filters.Add(typeof(ValidateModelStateFilter));
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //TODO: COME BACK HERE AND ADD FLUENTVALIDATION
             //mvcBuilder.AddFluentValidation();

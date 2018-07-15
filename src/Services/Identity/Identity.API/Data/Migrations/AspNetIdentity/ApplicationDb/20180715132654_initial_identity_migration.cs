@@ -40,7 +40,16 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    LibraryCardId = table.Column<string>(nullable: true),
+                    DOB = table.Column<string>(nullable: false),
+                    StreetAdress_Street = table.Column<string>(nullable: true),
+                    StreetAdress_City = table.Column<string>(nullable: true),
+                    StreetAdress_State = table.Column<string>(nullable: true),
+                    StreetAdress_Country = table.Column<string>(nullable: true),
+                    StreetAdress_ZipCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -17,7 +17,7 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            throw new NotImplementedException();
+            
         }
         public void Configure(IApplicationBuilder application, IHostingEnvironment env,
             ILoggerFactory loggerFactory)

@@ -19,7 +19,7 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Identity.API.Models.ApplicationUser", b =>
+            modelBuilder.Entity("LibraryBuddy.Services.Identity.API.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,10 +29,23 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("DOB")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LibraryCardId");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -180,6 +193,31 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LibraryBuddy.Services.Identity.API.Models.ApplicationUser", b =>
+                {
+                    b.OwnsOne("LibraryBuddy.Services.Identity.API.Models.Address", "StreetAdress", b1 =>
+                        {
+                            b1.Property<string>("ApplicationUserId");
+
+                            b1.Property<string>("City");
+
+                            b1.Property<string>("Country");
+
+                            b1.Property<string>("State");
+
+                            b1.Property<string>("Street");
+
+                            b1.Property<string>("ZipCode");
+
+                            b1.ToTable("AspNetUsers");
+
+                            b1.HasOne("LibraryBuddy.Services.Identity.API.Models.ApplicationUser")
+                                .WithOne("StreetAdress")
+                                .HasForeignKey("LibraryBuddy.Services.Identity.API.Models.Address", "ApplicationUserId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -190,7 +228,7 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Identity.API.Models.ApplicationUser")
+                    b.HasOne("LibraryBuddy.Services.Identity.API.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -198,7 +236,7 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Identity.API.Models.ApplicationUser")
+                    b.HasOne("LibraryBuddy.Services.Identity.API.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -211,7 +249,7 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Identity.API.Models.ApplicationUser")
+                    b.HasOne("LibraryBuddy.Services.Identity.API.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -219,7 +257,7 @@ namespace Identity.API.Data.Migrations.AspNetIdentity.ApplicationDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Identity.API.Models.ApplicationUser")
+                    b.HasOne("LibraryBuddy.Services.Identity.API.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

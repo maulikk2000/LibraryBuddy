@@ -14,7 +14,7 @@ namespace LibraryBuddy.Services.Identity.Infrastructure
 {
     public class HealthCheckStartup : ILibraryBuddyStartup
     {
-        public int Order => throw new NotImplementedException();
+        public int Order => 1050;
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
             => services.AddLibHealthCheck();

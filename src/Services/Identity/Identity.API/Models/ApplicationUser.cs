@@ -16,6 +16,6 @@ namespace LibraryBuddy.Services.Identity.API.Models
         public string LibraryCardId { get; set; }
         [Required(ErrorMessage ="DOB is required")]
         public string DOB { get; set; }
-        public Address StreetAdress { get; set; } //Here we are using OwnedEntity type https://docs.microsoft.com/en-au/ef/core/modeling/owned-entities
+        public virtual Address StreetAdress { get; set; } //Here we are using OwnedEntity type https://docs.microsoft.com/en-au/ef/core/modeling/owned-entities
     }
 }
