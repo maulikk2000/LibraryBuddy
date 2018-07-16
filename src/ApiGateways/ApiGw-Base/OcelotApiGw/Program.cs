@@ -23,6 +23,8 @@ namespace OcelotApiGw
             WebHost.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
+                //Ocelot will now use the environment specific configuration and fall back to ocelot.json if there isnt one.
+                config.AddJsonFile(Path.Combine("configuration","configuration.json"));
                 config.AddJsonFile("ocelot.json");
             })
             //http://ocelot.readthedocs.io/en/latest/introduction/gettingstarted.html

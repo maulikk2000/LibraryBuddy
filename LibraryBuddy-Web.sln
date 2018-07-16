@@ -40,15 +40,25 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGw", "src\ApiGateways\ApiGw-Base\OcelotApiGw\OcelotApiGw.csproj", "{95801D52-8DEA-48D4-AD17-C9D253092BC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile.Bff.Services", "Mobile.Bff.Services", "{7B634569-ADC0-4C4C-83D7-1CDB11083667}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Mobile.Bff.Services\configuration.json = src\ApiGateways\Mobile.Bff.Services\configuration.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile.Bff.Loan", "Mobile.Bff.Loan", "{54110CD2-2397-42AD-9702-6BCF95ABA1E1}"
 	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Mobile.Bff.Loan\configuration.json = src\ApiGateways\Mobile.Bff.Loan\configuration.json
 		ocelot.json = ocelot.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Loan", "Web.Bff.Loan", "{70402C63-BA6A-49C8-9861-FBAA3018E5D4}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Web.Bff.Loan\configuration.json = src\ApiGateways\Web.Bff.Loan\configuration.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Services", "Web.Bff.Services", "{DECD4AEA-4F5A-4E41-B6C1-64866EC8665B}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Web.Bff.Services\configuration.json = src\ApiGateways\Web.Bff.Services\configuration.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
