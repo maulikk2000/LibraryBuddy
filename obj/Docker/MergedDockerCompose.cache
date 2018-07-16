@@ -8,6 +8,15 @@ services:
     image: identityapi
     ports:
     - target: 80
+  ocelotapigw:
+    build:
+      context: D:\projects\LibraryBuddy\LibraryBuddy
+      dockerfile: src/ApiGateways/ApiGw-Base/OcelotApiGw/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: ocelotapigw
+    ports:
+    - target: 80
   webstatus:
     build:
       context: D:\projects\LibraryBuddy\LibraryBuddy
