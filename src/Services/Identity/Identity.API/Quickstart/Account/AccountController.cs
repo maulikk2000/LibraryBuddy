@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using LibraryBuddy.Services.Identity.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using LibraryBuddy.Services.Identity.API.Account;
+using LibraryBuddy.Services.Identity.API.Services;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -33,6 +34,7 @@ namespace IdentityServer4.Quickstart.UI
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
+        private readonly IPwnedPasswordService _pwnedPwdService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -40,7 +42,8 @@ namespace IdentityServer4.Quickstart.UI
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
-            IEventService events)
+            IEventService events,
+            IPwnedPasswordService pwnedPasswordService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -48,6 +51,7 @@ namespace IdentityServer4.Quickstart.UI
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
+            _pwnedPwdService = pwnedPasswordService;
         }
 
         /// <summary>
@@ -98,25 +102,39 @@ namespace IdentityServer4.Quickstart.UI
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
-                if (result.Succeeded)
-                {
-                    var user = await _userManager.FindByNameAsync(model.Username);
-                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName));
+                //check here if password provided is pwned or not ?
+                //if pwd is pwned then show error msg
+                var isPwdPwned = await _pwnedPwdService.IsPasswordPwned(model.Password);
 
-                    // make sure the returnUrl is still valid, and if so redirect back to authorize endpoint or a local page
-                    // the IsLocalUrl check is only necessary if you want to support additional local pages, otherwise IsValidReturnUrl is more strict
-                    if (_interaction.IsValidReturnUrl(model.ReturnUrl) || Url.IsLocalUrl(model.ReturnUrl))
+                if (isPwdPwned)
+                {
+                    await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "Pwned Password"));
+
+                    ModelState.AddModelError("", AccountOptions.PasswordPawnedErrorMessage);
+                }
+                else
+                {
+                    var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
+                    if (result.Succeeded)
                     {
-                        return Redirect(model.ReturnUrl);
+                        var user = await _userManager.FindByNameAsync(model.Username);
+                        await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName));
+
+                        // make sure the returnUrl is still valid, and if so redirect back to authorize endpoint or a local page
+                        // the IsLocalUrl check is only necessary if you want to support additional local pages, otherwise IsValidReturnUrl is more strict
+                        if (_interaction.IsValidReturnUrl(model.ReturnUrl) || Url.IsLocalUrl(model.ReturnUrl))
+                        {
+                            return Redirect(model.ReturnUrl);
+                        }
+
+                        return Redirect("~/");
                     }
 
-                    return Redirect("~/");
+                    await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
+
+                    ModelState.AddModelError("", AccountOptions.InvalidCredentialsErrorMessage);
                 }
-
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
-
-                ModelState.AddModelError("", AccountOptions.InvalidCredentialsErrorMessage);
+                
             }
 
             // something went wrong, show form with error
@@ -274,6 +292,13 @@ namespace IdentityServer4.Quickstart.UI
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+
+
+                //pass first 5 characters to the Have I been Pwned API 
+                //if pwd is pwned, suggest user to change it.
+                //https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange
+
+
                 var user = new ApplicationUser
                 {
                     UserName = model.User.UserName,
@@ -292,6 +317,14 @@ namespace IdentityServer4.Quickstart.UI
                     LibraryCardId = model.User.LibraryCardId,
                     PhoneNumber = model.User.PhoneNumber
                 };
+
+                //here check whether the password used by the user is found in a database of compromised passwords
+                IPasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
+                user.PasswordHash = passwordHasher.HashPassword(user, model.Password);
+
+
+
+
 
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Errors.Count() > 0)

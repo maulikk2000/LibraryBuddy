@@ -19,6 +19,7 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure
         {
             services.AddLibAuthentication(configuration);
             services.AddLibDataProtection();
+            services.AddPwnedPasswordHttpClient();
         }
            
         public void Configure(IApplicationBuilder application, IHostingEnvironment env, ILoggerFactory loggerFactory) 

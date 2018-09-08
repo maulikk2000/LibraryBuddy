@@ -8,6 +8,15 @@ services:
     image: identityapi
     ports:
     - target: 80
+  mobile.loan.httpaggregator:
+    build:
+      context: D:\projects\LibraryBuddy\LibraryBuddy
+      dockerfile: src/ApiGateways/Mobile.Bff.Loan/Mobile.Loan.HttpAggregator/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: mobileloanhttpaggregator
+    ports:
+    - target: 80
   ocelotapigw:
     build:
       context: D:\projects\LibraryBuddy\LibraryBuddy

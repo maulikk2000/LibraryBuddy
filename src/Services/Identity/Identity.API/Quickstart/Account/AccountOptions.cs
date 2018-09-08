@@ -22,5 +22,7 @@ namespace IdentityServer4.Quickstart.UI
         public static bool IncludeWindowsGroups = false;
 
         public static string InvalidCredentialsErrorMessage = "Invalid username or password";
+
+        public static string PasswordPawnedErrorMessage = "Warning: " + Environment.NewLine +  "The used password is ... " + Environment.NewLine +"We recomment you to change the password to be something safe.";
     }
 }

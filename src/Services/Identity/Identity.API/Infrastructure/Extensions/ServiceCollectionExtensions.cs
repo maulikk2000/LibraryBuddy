@@ -18,6 +18,7 @@ using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -63,6 +64,7 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
                 options.BlockSize = 8;
                 options.ThreadCount = 1;
             });
+            services.AddSingleton<IPwnedPasswordService, PwnedPasswordService>();
         }
 
         private static void AddAutoMapper(IServiceCollection services)
@@ -213,6 +215,20 @@ namespace LibraryBuddy.Services.Identity.API.Infrastructure.Extensions
                 options.ApplicationDiscriminator = "librarybuddy";
             })
             .PersistKeysToRedis(ConnectionMultiplexer.Connect(redisConnString), "librarybuddykeys");
+        }
+
+        public static void AddPwnedPasswordHttpClient(this IServiceCollection services)
+        {
+            services.AddPwnedPasswordHttpClient(PwnedPasswordService.DefaultName, client =>
+            {
+                client.BaseAddress = new Uri("https://api.pwnedpasswords.com");
+                client.DefaultRequestHeaders.Add("User-Agent", nameof(PwnedPasswordService));
+            });
+        }
+        public static IHttpClientBuilder AddPwnedPasswordHttpClient(this IServiceCollection services, string name, Action<HttpClient> configureClient)
+        {
+            return services.AddHttpClient<IPwnedPasswordService, PwnedPasswordService>(name, configureClient);
+            
         }
 
         public static void AddLibHealthCheck(this IServiceCollection services)

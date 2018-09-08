@@ -24,8 +24,8 @@ namespace OcelotApiGw
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 //Ocelot will now use the environment specific configuration and fall back to ocelot.json if there isnt one.
-                config.AddJsonFile(Path.Combine("configuration","configuration.json"));
-                config.AddJsonFile("ocelot.json");
+                //config.AddJsonFile(Path.Combine("configuration","configuration.json"));
+                config.AddJsonFile("ocelot.json"); //TODO: CHECK DO WE NEED THIS ENTRY HERE????
             })
             //http://ocelot.readthedocs.io/en/latest/introduction/gettingstarted.html
             //from .net core 2.1, as per doco add Ocelot entries in Program.cs, 

@@ -25,3 +25,10 @@ services:
     ports:
       - "80"
 
+
+  mobile.loan.httpaggregator:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

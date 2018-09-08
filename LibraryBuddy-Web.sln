@@ -42,6 +42,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile.Bff.Services", "Mobile.Bff.Services", "{7B634569-ADC0-4C4C-83D7-1CDB11083667}"
 	ProjectSection(SolutionItems) = preProject
 		src\ApiGateways\Mobile.Bff.Services\configuration.json = src\ApiGateways\Mobile.Bff.Services\configuration.json
+		src\ApiGateways\Mobile.Bff.Services\ocelot.json = src\ApiGateways\Mobile.Bff.Services\ocelot.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile.Bff.Loan", "Mobile.Bff.Loan", "{54110CD2-2397-42AD-9702-6BCF95ABA1E1}"
@@ -53,12 +54,32 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Loan", "Web.Bff.Loan", "{70402C63-BA6A-49C8-9861-FBAA3018E5D4}"
 	ProjectSection(SolutionItems) = preProject
 		src\ApiGateways\Web.Bff.Loan\configuration.json = src\ApiGateways\Web.Bff.Loan\configuration.json
+		src\ApiGateways\Web.Bff.Loan\ocelot.json = src\ApiGateways\Web.Bff.Loan\ocelot.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Services", "Web.Bff.Services", "{DECD4AEA-4F5A-4E41-B6C1-64866EC8665B}"
 	ProjectSection(SolutionItems) = preProject
 		src\ApiGateways\Web.Bff.Services\configuration.json = src\ApiGateways\Web.Bff.Services\configuration.json
+		src\ApiGateways\Web.Bff.Services\ocelot.json = src\ApiGateways\Web.Bff.Services\ocelot.json
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mobile.Loan.HttpAggregator", "src\ApiGateways\Mobile.Bff.Loan\Mobile.Loan.HttpAggregator\Mobile.Loan.HttpAggregator.csproj", "{799EAE00-1E58-4BE3-8064-AAE646F3CF78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBuses", "EventBuses", "{6C3EACB1-17C8-470E-98F8-3D14E1408481}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\BuildingBlocks\EventBus\EventBus\EventBus.csproj", "{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationEventLogEF", "src\BuildingBlocks\EventBus\IntegrationEventLogEF\IntegrationEventLogEF.csproj", "{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQEventBus", "src\BuildingBlocks\EventBus\RabbitMQEventBus\RabbitMQEventBus.csproj", "{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceBusEventBus", "src\BuildingBlocks\EventBus\AzureServiceBusEventBus\AzureServiceBusEventBus.csproj", "{A6617AD1-904B-461D-B16E-02AB77FDD286}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{E6176620-026D-40B2-BCC1-BAC50C7B7A24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resilience", "Resilience", "{9D157E78-2DC4-42C1-BDEF-7F9C76FDEB23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resilience.Http", "src\BuildingBlocks\Resilience\Resilience.Http\Resilience.Http.csproj", "{F2D72828-058B-4424-AB63-F12D4C1AFE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,6 +123,30 @@ Global
 		{95801D52-8DEA-48D4-AD17-C9D253092BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95801D52-8DEA-48D4-AD17-C9D253092BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95801D52-8DEA-48D4-AD17-C9D253092BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799EAE00-1E58-4BE3-8064-AAE646F3CF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799EAE00-1E58-4BE3-8064-AAE646F3CF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799EAE00-1E58-4BE3-8064-AAE646F3CF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799EAE00-1E58-4BE3-8064-AAE646F3CF78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6617AD1-904B-461D-B16E-02AB77FDD286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6617AD1-904B-461D-B16E-02AB77FDD286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6617AD1-904B-461D-B16E-02AB77FDD286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6617AD1-904B-461D-B16E-02AB77FDD286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D72828-058B-4424-AB63-F12D4C1AFE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D72828-058B-4424-AB63-F12D4C1AFE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D72828-058B-4424-AB63-F12D4C1AFE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D72828-058B-4424-AB63-F12D4C1AFE7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +172,15 @@ Global
 		{54110CD2-2397-42AD-9702-6BCF95ABA1E1} = {28DB2F60-DF11-46A9-945E-B8F6EA8EE016}
 		{70402C63-BA6A-49C8-9861-FBAA3018E5D4} = {28DB2F60-DF11-46A9-945E-B8F6EA8EE016}
 		{DECD4AEA-4F5A-4E41-B6C1-64866EC8665B} = {28DB2F60-DF11-46A9-945E-B8F6EA8EE016}
+		{799EAE00-1E58-4BE3-8064-AAE646F3CF78} = {54110CD2-2397-42AD-9702-6BCF95ABA1E1}
+		{6C3EACB1-17C8-470E-98F8-3D14E1408481} = {1E6C3697-A158-4873-BAE2-807D4432032F}
+		{FF0FF6E3-67DD-4CA1-94B2-FFF0A9E8FBC6} = {6C3EACB1-17C8-470E-98F8-3D14E1408481}
+		{7CC8B8A6-77FF-4401-90C6-C1625FA2B4A0} = {6C3EACB1-17C8-470E-98F8-3D14E1408481}
+		{B0BE371D-C33C-4DEA-8B06-2C73DF6711D3} = {6C3EACB1-17C8-470E-98F8-3D14E1408481}
+		{A6617AD1-904B-461D-B16E-02AB77FDD286} = {6C3EACB1-17C8-470E-98F8-3D14E1408481}
+		{E6176620-026D-40B2-BCC1-BAC50C7B7A24} = {6C3EACB1-17C8-470E-98F8-3D14E1408481}
+		{9D157E78-2DC4-42C1-BDEF-7F9C76FDEB23} = {1E6C3697-A158-4873-BAE2-807D4432032F}
+		{F2D72828-058B-4424-AB63-F12D4C1AFE7E} = {9D157E78-2DC4-42C1-BDEF-7F9C76FDEB23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E9C113C-4A64-45CA-9A17-6A05BD0F9D1D}

@@ -20,3 +20,10 @@ services:
       context: .
       dockerfile: src/ApiGateways/ApiGw-Base/OcelotApiGw/Dockerfile
 
+
+  mobile.loan.httpaggregator:
+    image: ${DOCKER_REGISTRY}mobileloanhttpaggregator
+    build:
+      context: .
+      dockerfile: src/ApiGateways/Mobile.Bff.Loan/Mobile.Loan.HttpAggregator/Dockerfile
+
