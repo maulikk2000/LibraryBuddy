@@ -9,7 +9,7 @@ namespace LibraryBuddy.BuildingBlocks.EventBus.Abstractions
     public interface IIntegrationEventHandler<in TIntegrationEvent> : IIntegrationEventHandler
         where TIntegrationEvent: IntegrationEvent
     {
-        Task Handler(TIntegrationEvent @event);
+        Task Handle(TIntegrationEvent @event);
     }
 
     public interface IIntegrationEventHandler

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerTargetOS>Windows</DockerTargetOS>
+    <UserSecretsId>57b6303b-8a4b-43bc-83b6-eff05ad81126</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.7.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.7.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\AzureServiceBusEventBus\AzureServiceBusEventBus.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\HealthChecks\Microsoft.AspNetCore.HealthChecks\Microsoft.AspNetCore.HealthChecks.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\HealthChecks\Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="StackExchange.Redis.StrongName">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\stackexchange.redis.strongname\1.2.4\lib\netstandard1.5\StackExchange.Redis.StrongName.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
