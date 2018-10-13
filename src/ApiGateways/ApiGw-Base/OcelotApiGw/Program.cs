@@ -31,7 +31,6 @@ namespace OcelotApiGw
             //from .net core 2.1, as per doco add Ocelot entries in Program.cs, 
             .ConfigureServices(s =>
             {
-                //Instead of adding the configuration directly e.g.AddJsonFile(“ocelot.json”) you can call AddOcelot()
                 s.AddOcelot();
             })
             .Configure(app =>
