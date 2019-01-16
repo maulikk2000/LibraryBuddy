@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LibraryBuddy.Services.Cart.API
 {
-    public class BasketSettings
+    public class CartSettings
     {
         public string ConnectionString { get; set; }
         public string EventBusConnection { get; set; }

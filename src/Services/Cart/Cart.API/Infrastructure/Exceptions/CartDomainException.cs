@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace LibraryBuddy.Services.Cart.API.Infrastructure.Exceptions
 {
-    public class BasketDomainException : Exception
+    public class CartDomainException : Exception
     {
-        public BasketDomainException()
+        public CartDomainException()
         {
 
         }
 
-        public BasketDomainException(string message) : base(message)
+        public CartDomainException(string message) : base(message)
         { }
 
-        public BasketDomainException(string message, Exception innerException)
+        public CartDomainException(string message, Exception innerException)
             : base(message, innerException)
         {}
     }

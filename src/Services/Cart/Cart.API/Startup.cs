@@ -29,6 +29,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Autofac.Extensions.DependencyInjection;
 using LibraryBuddy.Services.Cart.API.Models;
 using LibraryBuddy.Services.Cart.API.Services;
+using Cart.API.Infrastructure.Extensions;
 
 namespace LibraryBuddy.Services.Cart.API
 {
@@ -58,7 +59,7 @@ namespace LibraryBuddy.Services.Cart.API
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter));
                 options.Filters.Add(typeof(ValidateModelStateFilter));
             })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             //By default, Swagger JSON will not be formatted. If the Swagger JSON should be indented properly, 
             //set the SerializerSettings option in your AddMvc helper:
             //https://github.com/domaindrivendev/Swashbuckle.AspNetCore
@@ -69,17 +70,19 @@ namespace LibraryBuddy.Services.Cart.API
 
             ConfigureAuthService(services);
 
-            services.AddHealthChecks(checks =>
-            {
-                checks.AddValueTaskCheck("Cart Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")),
-                    TimeSpan.FromMinutes(5));
-            });
+            //services.AddHealthChecks(checks =>
+            //{
+            //    checks.AddValueTaskCheck("Cart Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")),
+            //        TimeSpan.FromMinutes(5));
+            //});
 
-            services.Configure<BasketSettings>(Configuration);
+            services.AddCustomHealthChecks(Configuration);
+
+            services.Configure<CartSettings>(Configuration);
 
             services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
-                var settings = sp.GetRequiredService<IOptions<BasketSettings>>().Value;
+                var settings = sp.GetRequiredService<IOptions<CartSettings>>().Value;
 
                 var configuration = ConfigurationOptions.Parse(settings.ConnectionString, true);
                 configuration.ResolveDns = true;
@@ -125,7 +128,7 @@ namespace LibraryBuddy.Services.Cart.API
                     TokenUrl = $"{Configuration.GetValue<string>("IdentityUrlExternal")}/connect/token",
                     Scopes = new Dictionary<string, string>()
                     {
-                        { "basket", "Cart API" }
+                        { "cart", "Cart API" }
                     }
                 });
 
@@ -142,7 +145,7 @@ namespace LibraryBuddy.Services.Cart.API
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IBasketRepository, RedisBasketRepository>();
+            services.AddTransient<ICartRepository, RedisCartRepository>();
             services.AddTransient<IIdentityService, IdentityService>();
 
             services.AddOptions();
@@ -190,7 +193,7 @@ namespace LibraryBuddy.Services.Cart.API
                 .UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Cart API V1");
-                    options.OAuthClientId("basketswaggerui");
+                    options.OAuthClientId("Cartswaggerui");
                     options.OAuthAppName("Cart Swagger UI");
                 });
             ConfigureEventBus(app);
@@ -216,7 +219,7 @@ namespace LibraryBuddy.Services.Cart.API
             {
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
-                options.Audience = "basket";
+                options.Audience = "cart";
             });
         }
 
@@ -264,6 +267,7 @@ namespace LibraryBuddy.Services.Cart.API
             eventBus.Subscribe<OtherUserCheckedOutBookEvent, OtherUserCheckedOutBookEventHandler>();
             eventBus.Subscribe<CheckOutStartedIntegrationEvent, CheckOutStartedIntegrationEventHandler>();
         }
+
 
 
     }

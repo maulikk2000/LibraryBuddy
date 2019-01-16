@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace LibraryBuddy.Services.Cart.API.Models
 {
-    public class CartItem
+    public class CartCheckout
     {
+        public Guid RequestId { get; set; }
     }
 }

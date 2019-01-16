@@ -30,7 +30,7 @@ namespace LibraryBuddy.Services.Cart.API.Infrastructure.Filters
                 context.Exception,
                 context.Exception.Message);
 
-            if(context.Exception.GetType() == typeof(BasketDomainException))
+            if(context.Exception.GetType() == typeof(CartDomainException))
             {
                 var json = new JsonErrorResponse
                 {

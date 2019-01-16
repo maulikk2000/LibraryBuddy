@@ -16,7 +16,7 @@ namespace LibraryBuddy.Services.Cart.API.Auth.Server
             Extensions.Add("flow", "implicit");
             Extensions.Add("scopes", new List<string>
             {
-                "basket"
+                "cart"
             });
         }
     }

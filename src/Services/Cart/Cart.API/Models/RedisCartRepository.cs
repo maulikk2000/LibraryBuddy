@@ -8,32 +8,32 @@ using System.Threading.Tasks;
 
 namespace LibraryBuddy.Services.Cart.API.Models
 {
-    public class RedisBasketRepository : IBasketRepository
+    public class RedisCartRepository : ICartRepository
     {
-        private readonly ILogger<RedisBasketRepository> _logger;
+        private readonly ILogger<RedisCartRepository> _logger;
         private readonly ConnectionMultiplexer _redis;
         private readonly IDatabase _database;
 
-        public RedisBasketRepository(ILogger<RedisBasketRepository> logger, ConnectionMultiplexer redis)
+        public RedisCartRepository(ILogger<RedisCartRepository> logger, ConnectionMultiplexer redis)
         {
             _logger = logger;
             _redis = redis;
             _database = redis.GetDatabase();
         }
-        public async Task<bool> DeleteBasketAsync(string id)
+        public async Task<bool> DeleteCartAsync(string id)
         {
             return await _database.KeyDeleteAsync(id);
         }
 
-        public async Task<BorrowerBasket> GetBasketAsync(string borrowerId)
+        public async Task<BorrowerCart> GetCartAsync(string borrowerId)
         {
-            var basket = await _database.StringGetAsync(borrowerId);
-            if(basket.IsNullOrEmpty)
+            var Cart = await _database.StringGetAsync(borrowerId);
+            if(Cart.IsNullOrEmpty)
             {
                 return null;
             }
 
-            return JsonConvert.DeserializeObject<BorrowerBasket>(basket);
+            return JsonConvert.DeserializeObject<BorrowerCart>(Cart);
         }
 
         public IEnumerable<string> GetUsers()
@@ -49,16 +49,16 @@ namespace LibraryBuddy.Services.Cart.API.Models
             return _redis.GetServer(endpoint.First());
         }
 
-        public async Task<BorrowerBasket> UpdateBasketAsync(BorrowerBasket basket)
+        public async Task<BorrowerCart> UpdateCartAsync(BorrowerCart Cart)
         {
-            var basketCreated = await _database.StringSetAsync(basket.BorrowerId, JsonConvert.SerializeObject(basket));
+            var CartCreated = await _database.StringSetAsync(Cart.Id, JsonConvert.SerializeObject(Cart));
 
-            if (!basketCreated)
+            if (!CartCreated)
             {
-                _logger.LogInformation("Problem persisting basket item.");
+                _logger.LogInformation("Problem persisting Cart item.");
                 return null;
             }
-            return await GetBasketAsync(basket.BorrowerId);
+            return await GetCartAsync(Cart.Id);
         }
     }
 }

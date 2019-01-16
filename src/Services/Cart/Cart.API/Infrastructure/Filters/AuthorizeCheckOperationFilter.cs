@@ -24,7 +24,7 @@ namespace LibraryBuddy.Services.Cart.API.Infrastructure.Filters
                 operation.Security = new List<IDictionary<string, IEnumerable<string>>>();
                 operation.Security.Add(new Dictionary<string, IEnumerable<string>>
                 {
-                    { "oauth2", new [] { "basketapi" } }
+                    { "oauth2", new [] { "Cartapi" } }
                 });
             }
                                 

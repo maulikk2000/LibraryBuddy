@@ -26,7 +26,7 @@ namespace Cart.FunctionalTests
         }
 
         [Fact]
-        public async Task Get_basket_and_response_ok_status_code()
+        public async Task Get_Cart_and_response_ok_status_code()
         {
             using(var server = CreateServer())
             {
@@ -37,7 +37,7 @@ namespace Cart.FunctionalTests
         }
 
         [Fact]
-        public async Task Send_checkout_basket_and_response_ok_status_code()
+        public async Task Send_checkout_Cart_and_response_ok_status_code()
         {
             using(var server = CreateServer())
             {
@@ -59,7 +59,7 @@ namespace Cart.FunctionalTests
 
         private string BuildCart()
         {
-            var order = new BorrowerBasket(AutoAuthorizeMiddleware.IDENTITY_ID);
+            var order = new BorrowerCart(AutoAuthorizeMiddleware.IDENTITY_ID);
 
             order.Items.Add(new CartItem
             {
